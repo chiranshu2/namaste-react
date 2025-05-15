@@ -1,6 +1,6 @@
   import RestaurantCard from "./RestaurantCard";
   import { useEffect, useState } from "react";
-  import { SWIGGY_API } from "../utils/constants";
+  import { FOODFIRE_API_URL  } from "../utils/constants";
   import Shimmer from "./shimmer";
 
   // Filter the restaurant data according input type
@@ -28,7 +28,7 @@
     async function getRestaurants() {
       // handle the error using try... catch
       try {
-        const response = await fetch(SWIGGY_API);
+        const response = await fetch(FOODFIRE_API_URL_API);
         const json = await response.json();
 
         // initialize checkJsonData() function to check Swiggy Restaurant data
@@ -48,7 +48,7 @@
 
         // call the checkJsonData() function which return Swiggy Restaurant data
         const resData = checkJsonData(json);
-        console.log(resData);
+
         // update the state variable restaurants with Swiggy API data
         setAllRestaurants(resData);
         setFilteredRestaurants(resData);
@@ -102,17 +102,19 @@
         {allRestaurants?.length === 0 ? (
           <Shimmer />
         ) : (
-          <div className="restaurant-list">
-            {/* We are mapping restaurants array and passing JSON array data to RestaurantCard component as props with unique key as restaurant.data.id */}
-            {filteredRestaurants.map((restaurant) => {
-              return (
-                <RestaurantCard
-                  key={restaurant?.info?.id}
-                  {...restaurant?.info}
-                />
-              );
-            })}
-          </div>
+        <div className="restaurant-list">
+          {/* We are mapping restaurants array and passing JSON array data to RestaurantCard component as props with unique key as restaurant.data.id */}
+          {filteredRestaurants.map((restaurant) => {
+            return (
+              <Link
+                to={"/restaurant/" + restaurant?.info?.id}
+                key={restaurant?.info?.id}
+              >
+                <RestaurantCard {...restaurant?.info} />
+              </Link>
+            );
+          })}
+        </div>
         )}
       </>
     );

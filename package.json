@@ -21,11 +21,14 @@
   },
   "homepage": "https://github.com/chiranshu2/namaste-react#readme",
   "devDependencies": {
-    "parcel": "^2.14.4",
-    "react-router-dom": "^7.6.0"
+    "constants-browserify": "^1.0.0",
+    "parcel": "^2.14.4"
   },
   "dependencies": {
+    "formik": "^2.4.6",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^6.22.3",
+    "yup": "^1.6.1"
   }
 }
